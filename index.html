@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="innofract - Experimental netlabel exploring the boundaries of digital sound">
+  <title>innofract</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="images/innofract_logo_001_black.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="home-hero" aria-label="innofract logo">
+      <img src="images/innofract_logo_002_white.png" alt="innofract Logo" class="home-logo-img">
+    </section>
+
+    <div class="home-grid">
+      <section class="home-section">
+        <div id="latest-release-grid" class="releases-grid" role="list"></div>
+      </section>
+
+      <section class="home-section">
+        <div id="recommended-release-grid" class="releases-grid" role="list"></div>
+      </section>
+    </div>
+
+    <section class="home-section" aria-labelledby="updates-title">
+      <h1 id="updates-title" class="releases-title">UPDATES</h1>
+      <ul class="updates-list">
+        <li><time datetime="2026-07-12">2026.07.12</time> — サイトデザインをリニューアルしました、E        </li>
+        <li><time datetime="2026-07-05">2026.07.05</time> — 新規リリース「Final Transmission」を公開しました、E/li>
+        <li><time datetime="2026-06-21">2026.06.21</time> — Bandcamp ページを開設しました、E/a></li>
+      </ul>
+    </section>
+
+    <section class="home-section" aria-labelledby="articles-forum-title">
+      <h1 id="articles-forum-title" class="releases-title">ARTICLES & FORUM</h1>
+      <ul class="updates-list">
+        <li><a href="#" class="article-link">「ド栄Eもよさ」についての考察</a> — 2026.07.10</li>
+        <li><a href="#" class="article-link">カセチE��テープ�E源とデジタル音源の違い</a> — 2026.06.28</li>
+        <li><a href="#" class="article-link">フォーラム: 次回リリースの予想スレ</a> — 2026.06.15</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>innofract &copy; 2026</p>
+  </footer>
+
+  <script src="releases.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render latest release (most recent by date)
+      const latestGrid = document.getElementById('latest-release-grid');
+      if (latestGrid && typeof RELEASES !== 'undefined' && typeof createReleaseCard !== 'undefined') {
+        const latest = [...RELEASES].sort((a, b) => b.date.localeCompare(a.date))[0];
+        latestGrid.appendChild(createReleaseCard(latest, 'NEW!'));
+      }
+
+      // Render recommended release (inno-0001)
+      const recommendedGrid = document.getElementById('recommended-release-grid');
+      if (recommendedGrid && typeof RELEASES !== 'undefined' && typeof createReleaseCard !== 'undefined') {
+        const recommended = RELEASES.find(r => r.id === 1);
+        if (recommended) {
+          recommendedGrid.appendChild(createReleaseCard(recommended, 'Recommended'));
+        }
+      }
+    });
+  </script>
+</body>
+</html>
