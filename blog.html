@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="innofract - Blog. Essays, notes, and ramblings from the label members.">
+  <title>innofract — blog</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="images/innofract_logo_001_black.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+  <style>
+    * { paint-order: stroke fill; stroke: #6a6a6a; stroke-width: 0.5px; }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="blog-section" aria-labelledby="blog-title">
+      <h1 id="blog-title" class="blog-title">BLOG</h1>
+
+      <div id="blog-grid" class="blog-grid" role="list" aria-label="Blog articles"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>innofract &copy; 2026</p>
+  </footer>
+
+  <script src="blog/articles.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('blog-grid');
+      if (!grid || typeof ARTICLES === 'undefined') return;
+
+      const sorted = [...ARTICLES].sort((a, b) => b.date.localeCompare(a.date));
+
+      sorted.forEach(article => {
+        const card = document.createElement('article');
+        card.className = 'blog-card';
+        card.setAttribute('role', 'listitem');
+
+        const preview = generateArtworkSVG(article.colorSeed, 400);
+
+        const [y, m, d] = article.date.split('-');
+        const dateLabel = `${y}.${m}.${d}`;
+
+        card.innerHTML = `
+          <a href="blog/${article.file}" class="blog-link" aria-label="${escapeHtml(article.title)} by ${escapeHtml(article.author)}">
+            <div class="blog-card-art" role="img" aria-label="${escapeHtml(article.title)} artwork">${preview}</div>
+            <div class="blog-card-body">
+              <span class="blog-card-meta">${escapeHtml(dateLabel)} · ${escapeHtml(article.tone)} · ${article.length} min read</span>
+              <h2 class="blog-card-title">${escapeHtml(article.title)}</h2>
+              <p class="blog-card-author">— ${escapeHtml(article.author)}</p>
+              <p class="blog-card-excerpt">${escapeHtml(article.excerpt)}</p>
+              <span class="blog-card-more">Read →</span>
+            </div>
+          </a>
+        `;
+        grid.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -15,8 +15,20 @@ const HEADER_HTML = `
     <a href="index.html">HOME</a>
     <a href="music.html">MUSIC</a>
     <a href="member.html">MEMBER</a>
+    <a href="blog.html">BLOG</a>
     <a href="about.html">ABOUT</a>
   </nav>
+  <div class="site-header-social" aria-label="Social links">
+    <a href="https://x.com/innofract" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+      <img src="icons/X.png" alt="" width="24" height="24" loading="lazy">
+    </a>
+    <a href="https://www.youtube.com/@innofract" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+      <img src="icons/youtube.png" alt="" width="24" height="24" loading="lazy">
+    </a>
+    <a href="https://innofract.bandcamp.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp">
+      <img src="icons/bandcamp.png" alt="" width="24" height="24" loading="lazy">
+    </a>
+  </div>
 </header>
 `;
 
