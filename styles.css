@@ -16,6 +16,7 @@
   --fog-strong: #c8c8c8;
   --mist: #858585;
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+  --font-body: "WDXL Lubrifont JP N", "Noto Sans JP", sans-serif;
   --font-mono: "SF Mono", "Fira Code", monospace;
   --font-heading: "Michroma", sans-serif;
   --max-width: 1200px;
@@ -185,6 +186,10 @@ img { display: block; max-width: 100%; height: auto; }
   transition: transform var(--transition), background var(--transition), color var(--transition);
 }
 
+.site-header-social .social-link::after {
+  display: none;
+}
+
 .site-header-social .social-link:hover {
   transform: scale(1.1);
   background: var(--accent);
@@ -200,6 +205,12 @@ img { display: block; max-width: 100%; height: auto; }
 
 .site-header-social .social-link:hover img {
   filter: none;
+}
+
+/* Bandcamp logo larger */
+.site-header-social .social-link[href*="bandcamp"] img {
+  width: 28px;
+  height: 28px;
 }
 
 /* ============================================================
@@ -310,6 +321,7 @@ main { padding-top: calc(var(--header-h) + 40px); min-height: 100vh; }
     0 0 0 3px #e60012;
   transform: rotate(-6deg);
   animation: badgePulse 2s ease-in-out infinite;
+  font-family: "Press Start 2P", cursive;
 }
 
 @keyframes badgePulse {
@@ -637,6 +649,7 @@ main { padding-top: calc(var(--header-h) + 40px); min-height: 100vh; }
   font-size: 1.0625rem;
   line-height: 1.8;
   color: var(--fg-muted);
+  font-family: var(--font-body);
 }
 
 .about-paragraph strong { color: var(--fg); font-weight: 600; }
@@ -644,6 +657,47 @@ main { padding-top: calc(var(--header-h) + 40px); min-height: 100vh; }
 .about-highlight {
   color: var(--accent);
   font-weight: 500;
+}
+
+.demo-submit {
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.demo-submit-text {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--fg-muted);
+  font-family: var(--font-body);
+  margin-bottom: 20px;
+}
+
+.demo-submit-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--fg);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: transform var(--transition), background var(--transition), color var(--transition);
+}
+
+.demo-submit-btn:hover {
+  transform: translateY(-2px);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.demo-submit-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .about-details {
@@ -922,3 +976,15 @@ main { padding-top: calc(var(--header-h) + 40px); min-height: 100vh; }
    ============================================================ */
 :focus:not(:focus-visible) { outline: none; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
