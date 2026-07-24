@@ -700,6 +700,35 @@ main { padding-top: calc(var(--header-h) + 40px); min-height: 100vh; }
   outline-offset: 4px;
 }
 
+.founder-info {
+  margin-top: 32px;
+  text-align: center;
+  align-self: center;
+}
+
+.founder-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 0;
+  object-fit: contain;
+  margin-bottom: 12px;
+  opacity: 0.8;
+  transition: opacity var(--transition);
+}
+
+.founder-logo:hover {
+  opacity: 1;
+}
+
+.founder-text {
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  opacity: 0.7;
+}
+
 .about-details {
   margin-top: 16px;
   padding-top: 24px;

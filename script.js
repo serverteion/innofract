@@ -14,8 +14,8 @@ const HEADER_HTML = `
   <nav aria-label="Main navigation">
     <a href="index.html">HOME</a>
     <a href="music.html">MUSIC</a>
-    <a href="member.html">MEMBER</a>
     <a href="blog.html">BLOG</a>
+    <a href="member.html">MEMBER</a>
     <a href="about.html">ABOUT</a>
   </nav>
   <div class="site-header-social" aria-label="Social links">
