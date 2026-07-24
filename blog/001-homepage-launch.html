@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="レーベルのホームページを作りました。 - innofract blog">
+  <title>innofract — レーベルのホームページを作りました。</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../images/innofract_logo_001_black.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+  <style>
+    * { paint-order: stroke fill; stroke: #6a6a6a; stroke-width: 0.5px; }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <article class="article-section">
+      <p class="article-meta">2026.08.08 · Announcement · 8 min read</p>
+      <h1 class="article-title">レーベルのホームページを作りました。</h1>
+      <p class="article-author">— Supire</p>
+
+      <div class="article-body">
+        <p>
+          お世話になっております、Supireと申します。<br>
+          Breakcore / Hardcore / Drum & Bassなどをこよなく愛する、東京在住の音楽家・サウンドデザイナーです。
+        </p>
+        <p>
+          2026年3月、このinnofractというレーベルを突如立ち上げさせていただきましたが、それからしばらく時間が経ち8月の今、遂に当レーベルの公式ホームページを発表させていただきました。<br>
+          以前よりずっと、ホームページを一から作るというのがちょっとした夢でして、自分のコミュニティやレーベルを持ったことでやっとその夢を叶えられました。<br>
+          手伝ってくれた皆様方は本当にありがとうございます。
+        </p>
+        <p class="section-break">
+          このレーベルでは特定のジャンルだけを取り扱わず、アイデアやデザインが面白いものが思いつき次第発表できるプラットフォームを目指して立ち上げました。<br>
+          雑多なジャンルになるとは思いますが、Supireやレーベルメンバーによる選定の元、リスナー様の審美眼に適う作品をリリースしていくことが出来れば幸いです。<br>
+          また、音楽作品だけでなく、サンプルパックやプリセット、プラグイン等のDTM関連品、主催イベント・グッズの販売、音楽が主体ではないような完全に離れているプロジェクト（ゲームとかブックレットとか？）等、とにかくたくさんのアイデアに挑戦できるような場所にしてえ行けるように、これから継続的に取り組んでいきたいです。
+        </p>
+        <p class="section-break">
+          既に私たちは3つのアルバムをリリースしております。<br>
+          どのアルバムもとても面白い作品になったという自負がございますので、是非とも拝聴していただければ幸いです。
+        </p>
+
+        <div class="bandcamp-embeds">
+          <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1436425871/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://innofract.bandcamp.com/album/innofract-celebration-001">innofract celebration : 001 Various Artists</a></iframe>
+          <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1081541714/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://innofract.bandcamp.com/album/klimt-ep">Klimt EP Triplett</a></iframe>
+          <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2722211558/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://innofract.bandcamp.com/album/reducted">REDUCTED Various Artists</a></iframe>
+        </div>
+        <p class="section-break">
+          当レーベルではデモを随時募集しております。<br>
+          Aboutのお問い合わせフォームよりデモの提出を承っておりますので、ご興味のある方はぜひ応募してみて下さい。<br>
+          すべての楽曲を採用させていただくわけではありませんが、送っていただいた作品は必ず目を通させていただきます。
+        </p>
+        <p>
+          今後ともinnofractをよろしくお願いいたします。
+        </p>
+        <p>
+          Supire
+        </p>
+      </div>
+
+      <a href="../blog.html" class="article-back">← back to blog</a>
+    </article>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>innofract &copy; 2026</p>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ph = document.getElementById('site-header');
+      if (ph) {
+        const file = window.location.pathname.split('/').pop() || '';
+        injectHeader(file);
+        const homeLink = ph.querySelector('a[href="index.html"]');
+        if (homeLink) homeLink.setAttribute('href', '../index.html');
+        const musicLink = ph.querySelector('a[href="music.html"]');
+        if (musicLink) musicLink.setAttribute('href', '../music.html');
+        const memberLink = ph.querySelector('a[href="member.html"]');
+        if (memberLink) memberLink.setAttribute('href', '../member.html');
+        const blogLink = ph.querySelector('a[href="blog.html"]');
+        if (blogLink) blogLink.setAttribute('href', '../blog.html');
+        const aboutLink = ph.querySelector('a[href="about.html"]');
+        if (aboutLink) aboutLink.setAttribute('href', '../about.html');
+        const logoLink = ph.querySelector('.site-header-logo');
+        if (logoLink) logoLink.setAttribute('href', '../enter.html');
+        const img = ph.querySelector('.site-header-logo img');
+        if (img) img.setAttribute('src', '../images/innofract_logo_001_white.png');
+        const socialImgs = ph.querySelectorAll('.site-header-social img');
+        socialImgs.forEach(img => {
+          if (img.src.includes('icons/')) img.setAttribute('src', img.getAttribute('src').replace('icons/', '../icons/'));
+        });
+      }
+    });
+  </script>
+</body>
+</html>
