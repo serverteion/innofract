@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="home-page">
   <div id="site-header"></div>
 
   <main>
@@ -19,14 +19,70 @@
       <img src="images/innofract_logo_002_white.png" alt="innofract Logo" class="home-logo-img">
     </section>
 
-    <div class="home-grid">
-      <section class="home-section">
-        <div id="latest-release-grid" class="releases-grid" role="list"></div>
-      </section>
+    <div class="home-cover">
+      <div class="cover-column cover-releases">
+        <div class="cover-releases-grid">
+          <div class="cover-release">
+            <div id="latest-release-grid" class="releases-grid" role="list"></div>
+          </div>
+          <div class="cover-release">
+            <div id="recommended-release-grid" class="releases-grid" role="list"></div>
+          </div>
+        </div>
+      </div>
 
-      <section class="home-section">
-        <div id="recommended-release-grid" class="releases-grid" role="list"></div>
-      </section>
+      <div class="cover-column cover-blog">
+        <article class="blog-card">
+          <a href="blog/001-homepage-launch.html" class="blog-link">
+            <div class="blog-card-art">
+              <svg viewBox="0 0 16 9" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="blogGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8e8e8e"/>
+                    <stop offset="100%" style="stop-color:#858585"/>
+                  </linearGradient>
+                </defs>
+                <rect width="16" height="9" fill="url(#blogGradient1)"/>
+              </svg>
+            </div>
+            <div class="blog-card-body">
+              <p class="blog-card-meta">2026.08.08 · Announcement · 8 min read</p>
+              <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
+              <p class="blog-card-author">— Supire</p>
+              <p class="blog-card-excerpt">お世話になっております、Supireと申します。Breakcore / Hardcore / Drum & Bassなどをこよなく愛する、東京在住の音楽家・サウンドデザイナーです。2026年3月、このinnofractというレーベルを突如立ち上げさせていただきましたが、それからしばらく時間が経ち8月の今、遂に当レーベルの公式ホームページを発表させていただきました。以前よりずっと、ホームページを一から作るというのがちょっとした夢でして、自分のコミュニティやレーベルを持ったことでやっとその夢を叶えられました。</p>
+              <span class="blog-card-more">Read →</span>
+            </div>
+          </a>
+        </article>
+      </div>
+
+      <div class="cover-column cover-blog cover-blog--coming-soon">
+        <article class="blog-card">
+          <a href="blog/001-homepage-launch.html" class="blog-link" style="pointer-events: none;">
+            <div class="blog-card-art">
+              <svg viewBox="0 0 16 9" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="blogGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8e8e8e"/>
+                    <stop offset="100%" style="stop-color:#858585"/>
+                  </linearGradient>
+                </defs>
+                <rect width="16" height="9" fill="url(#blogGradient2)"/>
+              </svg>
+            </div>
+            <div class="blog-card-body">
+              <p class="blog-card-meta">2026.08.08 · Announcement · 8 min read</p>
+              <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
+              <p class="blog-card-author">— Supire</p>
+              <p class="blog-card-excerpt">お世話になっております、Supireと申します。Breakcore / Hardcore / Drum & Bassなどをこよなく愛する、東京在住の音楽家・サウンドデザイナーです。2026年3月、このinnofractというレーベルを突如立ち上げさせていただきましたが、それからしばらく時間が経ち8月の今、遂に当レーベルの公式ホームページを発表させていただきました。以前よりずっと、ホームページを一から作るというのがちょっとした夢でして、自分のコミュニティやレーベルを持ったことでやっとその夢を叶えられました。</p>
+              <span class="blog-card-more">Read →</span>
+            </div>
+          </a>
+        </article>
+        <div class="coming-soon-overlay">
+          <span class="coming-soon-text">COMING<br>SOON</span>
+        </div>
+      </div>
     </div>
 
     <section class="home-section" aria-labelledby="updates-title">
@@ -35,15 +91,6 @@
         <li><time datetime="2026-07-12">2026.07.12</time> — サイトデザインをリニューアルしました、E        </li>
         <li><time datetime="2026-07-05">2026.07.05</time> — 新規リリース「Final Transmission」を公開しました、E/li>
         <li><time datetime="2026-06-21">2026.06.21</time> — Bandcamp ページを開設しました、E/a></li>
-      </ul>
-    </section>
-
-    <section class="home-section" aria-labelledby="articles-forum-title">
-      <h1 id="articles-forum-title" class="releases-title">ARTICLES & FORUM</h1>
-      <ul class="updates-list">
-        <li><a href="#" class="article-link">「ド栄Eもよさ」についての考察</a> — 2026.07.10</li>
-        <li><a href="#" class="article-link">カセチE��テープ�E源とデジタル音源の違い</a> — 2026.06.28</li>
-        <li><a href="#" class="article-link">フォーラム: 次回リリースの予想スレ</a> — 2026.06.15</li>
       </ul>
     </section>
   </main>

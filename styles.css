@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    innofract - Minimal Styles
    ============================================================ */
 
@@ -218,6 +218,8 @@ img { display: block; max-width: 100%; height: auto; }
    ============================================================ */
 main { padding-top: calc(var(--header-h) + 40px); min-height: 100vh; }
 
+body.home-page main { padding-top: 20px; }
+
 /* Home page - no header, centered logo */
 .home-main {
   min-height: 100vh;
@@ -260,45 +262,173 @@ main { padding-top: calc(var(--header-h) + 40px); min-height: 100vh; }
 
 .home-logo-img { width: min(680px, 90vw); height: auto; }
 
-.home-grid {
+.home-cover {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: var(--gap);
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 24px 16px;
+  padding: 0 24px 40px;
+  align-items: stretch;
+}
+
+.cover-column {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100%;
+  flex: 1;
+}
+
+.cover-blog .blog-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cover-column-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 16px;
+  font-family: var(--font-heading);
+}
+
+.cover-releases-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  flex: 1;
+}
+
+.cover-release {
+  position: relative;
+}
+
+.cover-release #latest-release-grid,
+.cover-release #recommended-release-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  width: 100%;
+}
+
+.cover-release .release-card {
+  min-height: auto;
+  overflow: visible;
+  width: 100%;
+}
+
+.cover-release .release-info {
+  display: none;
+}
+
+.cover-release .release-artwork {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  max-width: none;
+}
+
+.cover-blog .blog-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cover-blog .blog-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  text-align: left;
+}
+
+.cover-blog .blog-card-title {
+  font-size: 1.0625rem;
+  text-align: left;
+  margin-top: 4px;
+}
+
+.cover-blog .blog-card-author {
+  text-align: left;
+}
+
+.cover-blog .blog-card-meta {
+  text-align: left;
+}
+
+.cover-blog .blog-card-excerpt {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--fg-muted);
+  margin-top: 4px;
+  flex: 1;
+  text-align: left;
+}
+
+.cover-blog .blog-card-more {
+  align-self: flex-start;
+  margin-top: 12px;
+}
+
+.cover-blog--coming-soon {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.cover-blog--coming-soon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+  z-index: 1;
+  border-radius: var(--radius);
+}
+
+.cover-blog--coming-soon > .blog-card {
+  position: relative;
+  z-index: 0;
+}
+
+.coming-soon-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.coming-soon-text {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  font-family: var(--font-heading);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  line-height: 1.2;
+}
+
+@media (max-width: 960px) {
+  .home-cover {
+    grid-template-columns: 1fr;
+  }
 }
 
 .home-section {
   padding: 8px 24px 24px;
   max-width: var(--max-width);
   margin: 0 auto;
-}
-
-#latest-release-grid,
-#recommended-release-grid {
-  display: grid;
-  grid-template-columns: minmax(280px, 520px);
-  gap: var(--gap);
-  justify-content: center;
-}
-
-#latest-release-grid .release-info,
-#recommended-release-grid .release-info {
-  display: none;
-}
-
-#latest-release-grid .release-card,
-#recommended-release-grid .release-card {
-  min-height: auto;
-  overflow: visible;
-}
-
-#latest-release-grid .release-artwork,
-#recommended-release-grid .release-artwork {
-  aspect-ratio: 1 / 1;
-  position: relative;
-  overflow: visible;
 }
 
 .release-badge {
@@ -349,10 +479,6 @@ main { padding-top: calc(var(--header-h) + 40px); min-height: 100vh; }
 
 #latest-release-grid:empty,
 #recommended-release-grid:empty { display: none; }
-
-@media (max-width: 960px) {
-  .home-grid { grid-template-columns: 1fr; }
-}
 
 .updates-list {
   list-style: none;
