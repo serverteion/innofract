@@ -43,14 +43,12 @@
         card.className = 'blog-card';
         card.setAttribute('role', 'listitem');
 
-        const preview = generateArtworkSVG(article.colorSeed, 400);
-
         const [y, m, d] = article.date.split('-');
         const dateLabel = `${y}.${m}.${d}`;
 
         card.innerHTML = `
           <a href="blog/${article.file}" class="blog-link" aria-label="${escapeHtml(article.title)} by ${escapeHtml(article.author)}">
-            <div class="blog-card-art" role="img" aria-label="${escapeHtml(article.title)} artwork">${preview}</div>
+            <div class="blog-card-art" role="img" aria-label="${escapeHtml(article.title)} artwork"><img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/blogpics/blog001.png" alt="" class="blog-card-preview"></div>
             <div class="blog-card-body">
               <span class="blog-card-meta">${escapeHtml(dateLabel)} · ${escapeHtml(article.tone)} · ${article.length} min read</span>
               <h2 class="blog-card-title">${escapeHtml(article.title)}</h2>

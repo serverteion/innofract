@@ -20,13 +20,13 @@ const HEADER_HTML = `
   </nav>
   <div class="site-header-social" aria-label="Social links">
     <a href="https://x.com/innofract" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
-      <img src="icons/X.png" alt="" width="24" height="24" loading="lazy">
+      <img src="images/X.png" alt="" width="24" height="24" loading="lazy">
     </a>
     <a href="https://www.youtube.com/@innofract" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-      <img src="icons/youtube.png" alt="" width="24" height="24" loading="lazy">
+      <img src="images/youtube.png" alt="" width="24" height="24" loading="lazy">
     </a>
     <a href="https://innofract.bandcamp.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp">
-      <img src="icons/bandcamp.png" alt="" width="24" height="24" loading="lazy">
+      <img src="images/bandcamp.png" alt="" width="24" height="24" loading="lazy">
     </a>
   </div>
 </header>

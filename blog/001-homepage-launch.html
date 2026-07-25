@@ -92,7 +92,7 @@
         if (img) img.setAttribute('src', '../images/innofract_logo_001_white.png');
         const socialImgs = ph.querySelectorAll('.site-header-social img');
         socialImgs.forEach(img => {
-          if (img.src.includes('icons/')) img.setAttribute('src', img.getAttribute('src').replace('icons/', '../icons/'));
+          if (img.src.includes('images/')) img.setAttribute('src', img.getAttribute('src').replace('images/', '../images/'));
         });
       }
     });

@@ -9,7 +9,7 @@ const RELEASES = [
     title: "innofract celebration : 001",
     artist: "Various Artists",
     date: "2026-02-27",
-    artworkImage: "artworks/20260227innofractart001_1500.jpg",
+    artworkImage: "https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/musicpis/inno0001.png",
     catalog: "inno-0001",
     downloadUrl: "https://innofract.bandcamp.com/album/innofract-celebration-001"
   },
@@ -18,7 +18,7 @@ const RELEASES = [
     title: "Klimt EP",
     artist: "Triplett",
     date: "2026-04-26",
-    artworkImage: "artworks/20260227innofractart002_1500.png",
+    artworkImage: "https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/musicpis/inno0002.png",
     catalog: "inno-0002",
     downloadUrl: "https://innofract.bandcamp.com/album/klimt-ep"
   },
@@ -27,7 +27,7 @@ const RELEASES = [
     title: "REDUCTED",
     artist: "Various Artists",
     date: "2026-04-26",
-    artworkImage: "artworks/20260227innofractart003_1500.png",
+    artworkImage: "https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/musicpis/inno0003.png",
     catalog: "inno-0003",
     downloadUrl: "https://innofract.bandcamp.com/album/reducted"
   }
