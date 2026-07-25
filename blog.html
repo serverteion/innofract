@@ -36,6 +36,27 @@
       const grid = document.getElementById('blog-grid');
       if (!grid || typeof ARTICLES === 'undefined') return;
 
+      const authorAvatars = {
+        'Supire': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png',
+        'Amebre Kizami': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/amebre_kizami_icon.png',
+        'kyou1110': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/kyou1110_icon.png',
+        'Shishamo': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/shishamo_icon.png',
+        'oblivious': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/ovlivious_icon.png',
+        'goropi': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/goropi_icon.png',
+        'スパゲテー': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/spgtea_icon.png',
+        'melónet': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/melonet_icon.png',
+        'ETH4N': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/eth4n_icon.png',
+        'すてらべえ': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/stellabee_icon.png',
+        'danretsu': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/danretsu_icon.png',
+        'Ko-Shan': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/ko_shan_icon.png',
+        'Solfrail': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/solfrail_icon.png',
+        'Junk Summer': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/junk_summer_icon.png',
+        'elli mia': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/elli_mia_icon.png',
+        'Kyosu-!': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/kyosu_icon.png',
+        'Street': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/street_icon.png',
+        'Lem': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/lem_icon.png'
+      };
+
       const sorted = [...ARTICLES].sort((a, b) => b.date.localeCompare(a.date));
 
       sorted.forEach(article => {
@@ -45,6 +66,7 @@
 
         const [y, m, d] = article.date.split('-');
         const dateLabel = `${y}.${m}.${d}`;
+        const authorAvatar = authorAvatars[article.author] || 'images/supirelogo.png';
 
         card.innerHTML = `
           <a href="blog/${article.file}" class="blog-link" aria-label="${escapeHtml(article.title)} by ${escapeHtml(article.author)}">
@@ -52,13 +74,63 @@
             <div class="blog-card-body">
               <span class="blog-card-meta">${escapeHtml(dateLabel)} · ${escapeHtml(article.tone)} · ${article.length} min read</span>
               <h2 class="blog-card-title">${escapeHtml(article.title)}</h2>
-              <p class="blog-card-author">— ${escapeHtml(article.author)}</p>
-              <p class="blog-card-excerpt">${escapeHtml(article.excerpt)}</p>
-              <span class="blog-card-more">Read →</span>
+              <span class="blog-card-more" data-author="${escapeHtml(article.author)}">
+                <img src="${authorAvatar}" alt="${escapeHtml(article.author)}" class="blog-card-author-icon" loading="lazy">
+              </span>
             </div>
           </a>
         `;
         grid.appendChild(card);
+      });
+
+      // Mouse-following tooltip
+      const tooltip = document.createElement('div');
+      tooltip.className = 'blog-tooltip';
+      tooltip.style.cssText = `
+        position: fixed;
+        padding: 6px 12px;
+        background: var(--bg);
+        color: var(--fg);
+        font-size: 0.75rem;
+        font-family: var(--font-sans);
+        font-weight: 500;
+        white-space: nowrap;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 100;
+        box-shadow: var(--shadow);
+        transition: opacity 200ms ease, visibility 200ms ease;
+      `;
+      document.body.appendChild(tooltip);
+
+      grid.addEventListener('mouseover', (e) => {
+        const icon = e.target.closest('.blog-card-author-icon');
+        if (icon) {
+          const more = icon.closest('.blog-card-more');
+          if (more && more.dataset.author) {
+            tooltip.textContent = more.dataset.author;
+            tooltip.style.opacity = '1';
+            tooltip.style.visibility = 'visible';
+          }
+        }
+      });
+
+      grid.addEventListener('mousemove', (e) => {
+        if (tooltip.style.opacity === '1') {
+          tooltip.style.left = e.clientX + 12 + 'px';
+          tooltip.style.top = e.clientY + 12 + 'px';
+        }
+      });
+
+      grid.addEventListener('mouseout', (e) => {
+        const icon = e.target.closest('.blog-card-author-icon');
+        if (icon) {
+          tooltip.style.opacity = '0';
+          tooltip.style.visibility = 'hidden';
+        }
       });
     });
   </script>

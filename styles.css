@@ -335,18 +335,66 @@ body.home-page main { padding-top: 20px; }
   max-width: none;
 }
 
+.cover-blog .blog-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .cover-blog .blog-card {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.cover-blog .blog-card-body {
+.cover-blog .blog-card-art {
   flex: 1;
+  aspect-ratio: auto;
+  background: none;
+}
+
+.cover-blog .blog-card-body {
+  flex: 0 0 30%;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 12px;
   padding: 16px;
   text-align: left;
+}
+
+.cover-blog .blog-card-author-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  margin-bottom: -3px;
+}
+
+.cover-blog .blog-card-read-area {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+
+.cover-blog .blog-card-read {
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-muted);
+  transition: color var(--transition);
+}
+
+.cover-blog .blog-link:hover .blog-card-read {
+  color: var(--accent);
+}
+
+.cover-blog .blog-card-meta {
+  text-align: left;
+  margin-bottom: 8px;
 }
 
 .cover-blog .blog-card-title {
@@ -355,26 +403,22 @@ body.home-page main { padding-top: 20px; }
   margin-top: 4px;
 }
 
-.cover-blog .blog-card-author {
-  text-align: left;
-}
-
-.cover-blog .blog-card-meta {
-  text-align: left;
-}
-
-.cover-blog .blog-card-excerpt {
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  color: var(--fg-muted);
-  margin-top: 4px;
-  flex: 1;
-  text-align: left;
-}
-
 .cover-blog .blog-card-more {
   align-self: flex-start;
-  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cover-blog .blog-card-read {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg);
+  opacity: 0.7;
+  margin-left: 4px;
 }
 
 .cover-blog--coming-soon {
@@ -942,7 +986,7 @@ body.home-page main { padding-top: 20px; }
 .blog-link { display: block; text-decoration: none; color: inherit; }
 
 .blog-card-art {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   background: linear-gradient(135deg, var(--card-bg) 0%, var(--mist) 100%);
   overflow: hidden;
 }
@@ -1000,17 +1044,25 @@ body.home-page main { padding-top: 20px; }
 }
 
 .blog-card-more {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.8125rem;
   margin-top: 12px;
   color: var(--fg);
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  transition: transform var(--transition);
 }
 
-.blog-card:hover .blog-card-more { transform: translateX(4px); }
+.blog-card-author-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 3px solid #fff;
+}
 
 /* ============================================================
    Links Page

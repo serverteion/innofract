@@ -38,24 +38,34 @@
             <div class="blog-card-body">
               <p class="blog-card-meta">2026.08.08 · Announcement · 8 min read</p>
               <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
-              <p class="blog-card-author">— Supire</p>
-              <p class="blog-card-excerpt">お世話になっております、Supireと申します。Breakcore / Hardcore / Drum & Bassなどをこよなく愛する、東京在住の音楽家・サウンドデザイナーです。2026年3月、このinnofractというレーベルを突如立ち上げさせていただきましたが、それからしばらく時間が経ち8月の今、遂に当レーベルの公式ホームページを発表させていただきました。以前よりずっと、ホームページを一から作るというのがちょっとした夢でして、自分のコミュニティやレーベルを持ったことでやっとその夢を叶えられました。</p>
-              <span class="blog-card-more">Read →</span>
+              <div class="blog-card-author-area">
+                <span class="blog-card-more" data-author="Supire">
+                  <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+                </span>
+              </div>
+              <div class="blog-card-read-area">
+                <span class="blog-card-read">READ →</span>
+              </div>
             </div>
           </a>
         </article>
       </div>
 
-      <div class="cover-column cover-blog cover-blog--coming-soon">
+<div class="cover-column cover-blog cover-blog--coming-soon">
         <article class="blog-card">
           <a href="blog/001-homepage-launch.html" class="blog-link" style="pointer-events: none;">
             <div class="blog-card-art"><img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/blogpics/blog001.png" alt="" class="blog-card-preview"></div>
             <div class="blog-card-body">
               <p class="blog-card-meta">2026.08.08 · Announcement · 8 min read</p>
               <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
-              <p class="blog-card-author">— Supire</p>
-              <p class="blog-card-excerpt">お世話になっております、Supireと申します。Breakcore / Hardcore / Drum & Bassなどをこよなく愛する、東京在住の音楽家・サウンドデザイナーです。2026年3月、このinnofractというレーベルを突如立ち上げさせていただきましたが、それからしばらく時間が経ち8月の今、遂に当レーベルの公式ホームページを発表させていただきました。以前よりずっと、ホームページを一から作るというのがちょっとした夢でして、自分のコミュニティやレーベルを持ったことでやっとその夢を叶えられました。</p>
-              <span class="blog-card-more">Read →</span>
+              <div class="blog-card-author-area">
+                <span class="blog-card-more" data-author="Supire">
+                  <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+                </span>
+              </div>
+              <div class="blog-card-read-area">
+                <span class="blog-card-read">READ →</span>
+              </div>
             </div>
           </a>
         </article>
@@ -68,9 +78,7 @@
     <section class="home-section" aria-labelledby="updates-title">
       <h1 id="updates-title" class="releases-title">UPDATES</h1>
       <ul class="updates-list">
-        <li><time datetime="2026-07-12">2026.07.12</time> — サイトデザインをリニューアルしました、E        </li>
-        <li><time datetime="2026-07-05">2026.07.05</time> — 新規リリース「Final Transmission」を公開しました、E/li>
-        <li><time datetime="2026-06-21">2026.06.21</time> — Bandcamp ページを開設しました、E/a></li>
+        <li><time datetime="2026-08-08">2026.08.08</time> — サイトを開設しました</li>
       </ul>
     </section>
   </main>
@@ -97,6 +105,56 @@
         if (recommended) {
           recommendedGrid.appendChild(createReleaseCard(recommended, 'Recommended'));
         }
+      }
+
+      // Blog card tooltip
+      const coverBlog = document.querySelector('.cover-blog:not(.cover-blog--coming-soon)');
+      if (coverBlog) {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'blog-tooltip';
+        tooltip.style.cssText = `
+          position: fixed;
+          padding: 6px 12px;
+          background: var(--bg);
+          color: var(--fg);
+          font-size: 0.75rem;
+          font-family: var(--font-sans);
+          font-weight: 500;
+          white-space: nowrap;
+          border-radius: var(--radius);
+          border: 1px solid var(--border);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          z-index: 100;
+          box-shadow: var(--shadow);
+          transition: opacity 200ms ease, visibility 200ms ease;
+        `;
+        document.body.appendChild(tooltip);
+
+        coverBlog.addEventListener('mouseover', (e) => {
+          const more = e.target.closest('.blog-card-more');
+          if (more && more.dataset.author) {
+            tooltip.textContent = more.dataset.author;
+            tooltip.style.opacity = '1';
+            tooltip.style.visibility = 'visible';
+          }
+        });
+
+        coverBlog.addEventListener('mousemove', (e) => {
+          if (tooltip.style.opacity === '1') {
+            tooltip.style.left = e.clientX + 12 + 'px';
+            tooltip.style.top = e.clientY + 12 + 'px';
+          }
+        });
+
+        coverBlog.addEventListener('mouseout', (e) => {
+          const more = e.target.closest('.blog-card-more');
+          if (more) {
+            tooltip.style.opacity = '0';
+            tooltip.style.visibility = 'hidden';
+          }
+        });
       }
     });
   </script>
