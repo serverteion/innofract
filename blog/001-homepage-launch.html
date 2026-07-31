@@ -12,6 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
   <style>
     * { paint-order: stroke fill; stroke: #6a6a6a; stroke-width: 0.5px; }
+    .article-author { margin-bottom: 24px; }
+    .article-author .author-page-link { display: inline-block; }
+    .article-author .blog-card-author-icon { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
   </style>
 </head>
 <body>
@@ -21,7 +24,11 @@
     <article class="article-section">
       <p class="article-meta">2026.08.08 · Announcement · 8 min read</p>
       <h1 class="article-title">レーベルのホームページを作りました。</h1>
-      <p class="article-author">— Supire</p>
+      <div class="article-author">
+        <a href="../member/supire.html" class="author-page-link" aria-label="Supire's profile" data-author="Supire">
+          <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+        </a>
+      </div>
 
       <div class="article-body">
         <p>
@@ -95,6 +102,58 @@
           if (img.src.includes('images/')) img.setAttribute('src', img.getAttribute('src').replace('images/', '../images/'));
         });
       }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const articleSection = document.querySelector('.article-section');
+      if (!articleSection) return;
+
+      const tooltip = document.createElement('div');
+      tooltip.className = 'blog-tooltip';
+      tooltip.style.cssText = `
+        position: fixed;
+        padding: 6px 12px;
+        background: var(--bg);
+        color: var(--fg);
+        font-size: 0.75rem;
+        font-family: var(--font-sans);
+        font-weight: 500;
+        white-space: nowrap;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 100;
+        box-shadow: var(--shadow);
+        transition: opacity 200ms ease, visibility 200ms ease;
+      `;
+      document.body.appendChild(tooltip);
+
+      articleSection.addEventListener('mouseover', (e) => {
+        const link = e.target.closest('.author-page-link');
+        if (link && link.dataset.author) {
+          tooltip.textContent = link.dataset.author;
+          tooltip.style.opacity = '1';
+          tooltip.style.visibility = 'visible';
+        }
+      });
+
+      articleSection.addEventListener('mousemove', (e) => {
+        if (tooltip.style.opacity === '1') {
+          tooltip.style.left = e.clientX + 12 + 'px';
+          tooltip.style.top = e.clientY + 12 + 'px';
+        }
+      });
+
+      articleSection.addEventListener('mouseout', (e) => {
+        const link = e.target.closest('.author-page-link');
+        if (link) {
+          tooltip.style.opacity = '0';
+          tooltip.style.visibility = 'hidden';
+        }
+      });
     });
   </script>
 </body>
