@@ -36,7 +36,7 @@
       if (!container) return;
       
       const members = [
-        { name: 'Supire', role: 'Owner / Music / Design / Mastering', image: 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png' },
+        { name: 'Supire', role: 'Owner / Music / Design / Mastering', image: 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png', detail: 'member/supire.html' },
         { name: 'Amebre Kizami', role: 'Label / Music', image: 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/amebre_kizami_icon.png' },
         { name: 'kyou1110', role: 'Label / Music', image: 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/kyou1110_icon.png' },
         { name: 'Shishamo', role: 'Programming', image: 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/shishamo_icon.png' },
@@ -75,15 +75,19 @@
 
       members.forEach(member => {
         const card = document.createElement('article');
+        const linkAttr = member.detail ? `href="${member.detail}"` : '';
+        const tag = linkAttr ? 'a' : 'div';
         card.className = 'member-card';
         card.innerHTML = `
-          <div class="member-avatar">
-            <img src="${member.image}" alt="${member.name}" loading="lazy">
-          </div>
-          <div class="member-info">
-            <h2 class="member-name">${member.name}</h2>
-            <p class="member-meta">${member.role}</p>
-          </div>
+          <${tag} class="member-card-inner" ${linkAttr}>
+            <div class="member-avatar">
+              <img src="${member.image}" alt="${member.name}" loading="lazy">
+            </div>
+            <div class="member-info">
+              <h2 class="member-name">${member.name}</h2>
+              <p class="member-meta">${member.role}</p>
+            </div>
+          </${tag}>
         `;
         container.appendChild(card);
       });
