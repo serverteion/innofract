@@ -12,6 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
   <style>
     * { paint-order: stroke fill; stroke: #6a6a6a; stroke-width: 0.5px; }
+    .author-page-link { display: inline-block; text-decoration: none; }
+    .author-page-link:hover .blog-card-author-icon { opacity: 0.8; transition: opacity 200ms ease; }
   </style>
 </head>
 <body>
@@ -57,6 +59,10 @@
         'Lem': 'https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/lem_icon.png'
       };
 
+      const authorPages = {
+        'Supire': 'member/supire.html'
+      };
+
       const sorted = [...ARTICLES].sort((a, b) => b.date.localeCompare(a.date));
 
       sorted.forEach(article => {
@@ -67,6 +73,7 @@
         const [y, m, d] = article.date.split('-');
         const dateLabel = `${y}.${m}.${d}`;
         const authorAvatar = authorAvatars[article.author] || 'images/supirelogo.png';
+        const authorPage = authorPages[article.author];
 
         card.innerHTML = `
           <a href="blog/${article.file}" class="blog-link" aria-label="${escapeHtml(article.title)} by ${escapeHtml(article.author)}">
@@ -75,7 +82,9 @@
               <span class="blog-card-meta">${escapeHtml(dateLabel)} · ${escapeHtml(article.tone)} · ${article.length} min read</span>
               <h2 class="blog-card-title">${escapeHtml(article.title)}</h2>
               <span class="blog-card-more" data-author="${escapeHtml(article.author)}">
-                <img src="${authorAvatar}" alt="${escapeHtml(article.author)}" class="blog-card-author-icon" loading="lazy">
+                ${authorPage ? `<a href="${authorPage}" class="author-page-link" aria-label="${escapeHtml(article.author)}'s profile" data-author="${escapeHtml(article.author)}">` : ''}
+                  <img src="${authorAvatar}" alt="${escapeHtml(article.author)}" class="blog-card-author-icon" loading="lazy">
+                ${authorPage ? '</a>' : ''}
               </span>
             </div>
           </a>
@@ -106,15 +115,13 @@
       `;
       document.body.appendChild(tooltip);
 
+      // Tooltip on author page link (wraps the icon)
       grid.addEventListener('mouseover', (e) => {
-        const icon = e.target.closest('.blog-card-author-icon');
-        if (icon) {
-          const more = icon.closest('.blog-card-more');
-          if (more && more.dataset.author) {
-            tooltip.textContent = more.dataset.author;
-            tooltip.style.opacity = '1';
-            tooltip.style.visibility = 'visible';
-          }
+        const link = e.target.closest('.author-page-link');
+        if (link && link.dataset.author) {
+          tooltip.textContent = link.dataset.author;
+          tooltip.style.opacity = '1';
+          tooltip.style.visibility = 'visible';
         }
       });
 
@@ -126,10 +133,18 @@
       });
 
       grid.addEventListener('mouseout', (e) => {
-        const icon = e.target.closest('.blog-card-author-icon');
-        if (icon) {
+        const link = e.target.closest('.author-page-link');
+        if (link) {
           tooltip.style.opacity = '0';
           tooltip.style.visibility = 'hidden';
+        }
+      });
+
+      // Prevent author page link from triggering article navigation
+      grid.addEventListener('click', (e) => {
+        const authorLink = e.target.closest('.author-page-link');
+        if (authorLink) {
+          e.stopPropagation();
         }
       });
     });

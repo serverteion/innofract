@@ -10,6 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    .author-page-link { display: inline-block; text-decoration: none; }
+    .author-page-link:hover .blog-card-author-icon { opacity: 0.8; transition: opacity 200ms ease; }
+  </style>
 </head>
 <body class="home-page">
   <div id="site-header"></div>
@@ -40,7 +44,9 @@
               <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
               <div class="blog-card-author-area">
                 <span class="blog-card-more" data-author="Supire">
-                  <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+                  <a href="member/supire.html" class="author-page-link" aria-label="Supire's profile" data-author="Supire">
+                    <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+                  </a>
                 </span>
               </div>
               <div class="blog-card-read-area">
@@ -60,7 +66,9 @@
               <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
               <div class="blog-card-author-area">
                 <span class="blog-card-more" data-author="Supire">
-                  <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+                  <a href="member/supire.html" class="author-page-link" aria-label="Supire's profile" data-author="Supire">
+                    <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+                  </a>
                 </span>
               </div>
               <div class="blog-card-read-area">
@@ -133,9 +141,9 @@
         document.body.appendChild(tooltip);
 
         coverBlog.addEventListener('mouseover', (e) => {
-          const more = e.target.closest('.blog-card-more');
-          if (more && more.dataset.author) {
-            tooltip.textContent = more.dataset.author;
+          const link = e.target.closest('.author-page-link');
+          if (link && link.dataset.author) {
+            tooltip.textContent = link.dataset.author;
             tooltip.style.opacity = '1';
             tooltip.style.visibility = 'visible';
           }
@@ -149,10 +157,18 @@
         });
 
         coverBlog.addEventListener('mouseout', (e) => {
-          const more = e.target.closest('.blog-card-more');
-          if (more) {
+          const link = e.target.closest('.author-page-link');
+          if (link) {
             tooltip.style.opacity = '0';
             tooltip.style.visibility = 'hidden';
+          }
+        });
+
+        // Prevent author page link from triggering article navigation
+        coverBlog.addEventListener('click', (e) => {
+          const authorLink = e.target.closest('.author-page-link');
+          if (authorLink) {
+            e.stopPropagation();
           }
         });
       }
