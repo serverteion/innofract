@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="kyou1110 - Label / Music at innofract. Experimental electronic and digital soundscapes.">
+  <title>kyou1110 | innofract</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../images/innofract_logo_001_black.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&family=Michroma&display=swap" rel="stylesheet">
+  <style>
+    * { paint-order: stroke fill; stroke: #6a6a6a; stroke-width: 0.5px; }
+    body.member-detail-page main { padding-top: calc(var(--header-h) + 40px); }
+    @media (max-width: 600px) { body.member-detail-page main { padding-top: 20px; } }
+    .member-detail-section { padding: 40px 24px 80px; max-width: var(--max-width); margin: 0 auto; }
+    .member-detail { max-width: 800px; margin: 0 auto; }
+    .member-detail-header { display: flex; gap: 32px; align-items: flex-start; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+    .member-detail-avatar { flex-shrink: 0; width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 3px solid var(--border); background: var(--bg); }
+    .member-detail-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .member-detail-info { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+    .member-detail-name { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; font-family: var(--font-heading); letter-spacing: -0.02em; color: var(--fg); }
+    .member-detail-role { font-size: 1rem; color: var(--fg-muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; }
+    .member-detail-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .member-detail-links .social-link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: var(--radius); background: var(--accent-dim); color: var(--fg); text-decoration: none; font-size: 0.8125rem; font-weight: 600; font-family: "Anta", sans-serif; text-transform: uppercase; letter-spacing: 0.05em; transition: transform var(--transition), background var(--transition), color var(--transition); }
+    .member-detail-links .social-link:hover { transform: scale(1.05); background: var(--accent); color: var(--bg); }
+    .member-products-title { font-size: 1rem; font-weight: 700; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg); margin-bottom: 24px; }
+    .member-products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--gap); }
+    .product-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition); display: flex; flex-direction: column; padding: 20px; }
+    .product-card:hover { transform: translateY(-2px); border-color: var(--border-strong); box-shadow: var(--shadow-strong); }
+    .product-link { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: inherit; }
+    .product-info { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .product-type { font-size: 0.65rem; font-weight: 700; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+    .product-title { font-size: 1rem; font-weight: 600; color: var(--fg); line-height: 1.3; transition: color var(--transition); }
+    .product-card:hover .product-title { color: var(--accent); }
+    .product-artist { font-size: 0.875rem; color: var(--fg-muted); font-weight: 400; }
+    .product-catalog { font-size: 0.7rem; color: var(--fg-muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; }
+    .product-date { font-size: 0.75rem; color: var(--fg-muted); font-family: var(--font-mono); margin-top: auto; opacity: 0.7; }
+    @media (max-width: 600px) { .member-detail-header { flex-direction: column; align-items: center; text-align: center; gap: 20px; } .member-detail-links { justify-content: center; } .member-products-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="member-detail-page">
+  <div id="site-header"></div>
+  <main>
+    <section class="member-detail-section" aria-labelledby="member-name">
+      <div class="member-detail">
+        <div class="member-detail-header">
+          <div class="member-detail-avatar">
+            <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/kyou1110_icon.png" alt="kyou1110" loading="lazy">
+          </div>
+          <div class="member-detail-info">
+            <h1 id="member-name" class="member-detail-name">kyou1110</h1>
+            <p class="member-detail-role">Label / Music</p>
+            <div class="member-detail-links">
+              <a href="https://x.com/kyou1110" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="kyou1110 on X (Twitter)">X</a>
+              <a href="https://soundcloud.com/kyou1110" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="kyou1110 on SoundCloud">SoundCloud</a>
+            </div>
+          </div>
+        </div>
+        <div class="member-products">
+          <h2 class="member-products-title">Products</h2>
+          <div class="member-products-grid" id="kyou1110-products"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" role="contentinfo"><p>innofract &copy; 2026</p></footer>
+  <script src="../releases.js"></script>
+  <script src="../blog/articles.js"></script>
+  <script src="../script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('kyou1110-products');
+      if (!container) return;
+      const allItems = [];
+      if (typeof RELEASES !== 'undefined') {
+        RELEASES.forEach(release => {
+          if (release.artist === 'kyou1110' || release.artist.includes('kyou1110')) {
+            allItems.push({ type: 'release', date: release.date, title: release.title, artist: release.artist, catalog: release.catalog, image: release.artworkImage, url: release.downloadUrl });
+          }
+        });
+      }
+      if (typeof ARTICLES !== 'undefined') {
+        ARTICLES.forEach(article => { if (article.author === 'kyou1110') { allItems.push({ type: 'article', date: article.date, title: article.title, artist: article.author, catalog: null, image: `https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/blogpics/${article.file.replace('.html', '')}.png`, url: `../blog/${article.file}` }); });
+      }
+      allItems.sort((a, b) => a.date.localeCompare(b.date));
+      allItems.forEach(item => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        const typeLabel = item.type === 'release' ? 'Music' : 'Blog';
+        const catalogHtml = item.catalog ? `<p class="product-catalog">${item.catalog}</p>` : '';
+        const linkTarget = item.type === 'release' ? ' target="_blank" rel="noopener"' : '';
+        card.innerHTML = `<a href="${item.url}" class="product-link"${linkTarget} aria-label="View ${item.title} by ${item.artist}"><div class="product-info"><span class="product-type">${typeLabel}</span><h3 class="product-title">${item.title}</h3><p class="product-artist">${item.artist}</p>${catalogHtml}<time class="product-date" datetime="${item.date}">${item.date.replace(/-/g, '.')}</time></div></a>`;
+        container.appendChild(card);
+      });
+      if (allItems.length === 0) { container.innerHTML = '<p style="color: var(--fg-muted); text-align: center; grid-column: 1/-1; padding: 40px;">No releases or articles yet.</p>'; }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const headerPlaceholder = document.getElementById('site-header');
+      if (headerPlaceholder) {
+        headerPlaceholder.innerHTML = `<header class="site-header" role="banner"><a href="../enter.html" class="site-header-logo" aria-label="innofract - Enter"><img src="../images/innofract_logo_001_white.png" alt="innofract"></a><nav aria-label="Main navigation"><a href="../index.html">HOME</a><a href="../music.html">MUSIC</a><a href="../blog.html">BLOG</a><a href="../member.html">MEMBER</a><a href="../about.html">ABOUT</a></nav><div class="site-header-social" aria-label="Social links"><a href="https://x.com/innofract" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"><img src="../images/X.png" alt="" width="24" height="24" loading="lazy"></a><a href="https://www.youtube.com/@innofract" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="../images/youtube.png" alt="" width="24" height="24" loading="lazy"></a><a href="https://innofract.bandcamp.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><img src="../images/bandcamp.png" alt="" width="24" height="24" loading="lazy"></a></div></header>`;
+        const activeLink = headerPlaceholder.querySelector('a[href="../member.html"]');
+        if (activeLink) activeLink.setAttribute('aria-current', 'page');
+      }
+    });
+  </script>
+</body>
+</html>
