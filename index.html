@@ -14,6 +14,14 @@
     .home-logo-link { position: relative; display: inline-block; }
     #particle-canvas { position: absolute; inset: -60px; pointer-events: none; z-index: 0; }
     .home-logo-link img { position: relative; z-index: 1; display: block; }
+    .tap-to-enter {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      letter-spacing: 0.1em;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
     body {
       background: var(--bg) url('images/homebackground.gif') center center / cover no-repeat fixed;
       background-blend-mode: multiply;
@@ -26,6 +34,7 @@
       <canvas id="particle-canvas" aria-hidden="true"></canvas>
       <img src="images/innofract_logo_003_white.png" alt="innofract Logo" width="400">
     </a>
+    <p class="tap-to-enter">↑<br>tap to enter</p>
     <footer class="site-footer" role="contentinfo" style="margin-top: 24px;">
       <p>innofract &copy; 2026</p>
     </footer>
