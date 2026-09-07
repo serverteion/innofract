@@ -22,11 +22,13 @@
 
   <main>
     <article class="article-section">
-      <p class="article-meta">2026.08.08 · Announcement · 8 min read</p>
+      <p class="article-meta">2026.09.11 · Announcement · 8 min read</p>
       <h1 class="article-title">レーベルのホームページを作りました。</h1>
       <div class="article-author">
-        <a href="../member/supire.html" class="author-page-link" aria-label="Supire's profile" data-author="Supire">
-          <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+        <a href="../member/supire.html" class="author-page-link" aria-label="Supire's profile">
+          <span class="author-image" data-author="Supire">
+            <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+          </span>
         </a>
       </div>
 
@@ -36,7 +38,7 @@
           Breakcore / Hardcore / Drum & Bassなどをこよなく愛する、東京在住の音楽家・サウンドデザイナーです。
         </p>
         <p>
-          2026年3月、このinnofractというレーベルを突如立ち上げさせていただきましたが、それからしばらく時間が経ち8月の今、遂に当レーベルの公式ホームページを発表させていただきました。<br>
+          2026年3月、このinnofractというレーベルを突如立ち上げさせていただきましたが、それからしばらく時間が経ち9月の今、遂に当レーベルの公式ホームページを発表させていただきました。<br>
           以前よりずっと、ホームページを一から作るというのがちょっとした夢でして、自分のコミュニティやレーベルを持ったことでやっとその夢を叶えられました。<br>
           手伝ってくれた皆様方は本当にありがとうございます。
         </p>
@@ -131,28 +133,24 @@
       `;
       document.body.appendChild(tooltip);
 
-      articleSection.addEventListener('mouseover', (e) => {
-        const link = e.target.closest('.author-page-link');
-        if (link && link.dataset.author) {
-          tooltip.textContent = link.dataset.author;
-          tooltip.style.opacity = '1';
-          tooltip.style.visibility = 'visible';
-        }
-      });
-
-      articleSection.addEventListener('mousemove', (e) => {
-        if (tooltip.style.opacity === '1') {
-          tooltip.style.left = e.clientX + 12 + 'px';
-          tooltip.style.top = e.clientY + 12 + 'px';
-        }
-      });
-
-      articleSection.addEventListener('mouseout', (e) => {
-        const link = e.target.closest('.author-page-link');
-        if (link) {
+      articleSection.querySelectorAll('.author-image').forEach(img => {
+        img.addEventListener('mouseenter', (e) => {
+          if (img.dataset.author) {
+            tooltip.textContent = img.dataset.author;
+            tooltip.style.opacity = '1';
+            tooltip.style.visibility = 'visible';
+          }
+        });
+        img.addEventListener('mousemove', (e) => {
+          if (tooltip.style.opacity === '1') {
+            tooltip.style.left = e.clientX + 12 + 'px';
+            tooltip.style.top = e.clientY + 12 + 'px';
+          }
+        });
+        img.addEventListener('mouseleave', () => {
           tooltip.style.opacity = '0';
           tooltip.style.visibility = 'hidden';
-        }
+        });
       });
     });
   </script>

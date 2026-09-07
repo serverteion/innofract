@@ -80,9 +80,11 @@
             <div class="blog-card-body">
               <span class="blog-card-meta">${escapeHtml(dateLabel)} · ${escapeHtml(article.tone)} · ${article.length} min read</span>
               <h2 class="blog-card-title">${escapeHtml(article.title)}</h2>
-              <span class="blog-card-more" data-author="${escapeHtml(article.author)}">
-                ${authorPage ? `<a href="${authorPage}" class="author-page-link" aria-label="${escapeHtml(article.author)}'s profile" data-author="${escapeHtml(article.author)}">` : ''}
-                  <img src="${authorAvatar}" alt="${escapeHtml(article.author)}" class="blog-card-author-icon" loading="lazy">
+              <span class="blog-card-more">
+                ${authorPage ? `<a href="${authorPage}" class="author-page-link" aria-label="${escapeHtml(article.author)}'s profile">` : ''}
+                  <span class="author-image" data-author="${escapeHtml(article.author)}">
+                    <img src="${authorAvatar}" alt="${escapeHtml(article.author)}" class="blog-card-author-icon" loading="lazy">
+                  </span>
                 ${authorPage ? '</a>' : ''}
               </span>
             </div>
@@ -114,11 +116,11 @@
       `;
       document.body.appendChild(tooltip);
 
-      // Tooltip on author page link (wraps the icon)
+      // Tooltip on author icon area
       grid.addEventListener('mouseover', (e) => {
-        const link = e.target.closest('.author-page-link');
-        if (link && link.dataset.author) {
-          tooltip.textContent = link.dataset.author;
+        const authorImg = e.target.closest('.author-image');
+        if (authorImg && authorImg.dataset.author) {
+          tooltip.textContent = authorImg.dataset.author;
           tooltip.style.opacity = '1';
           tooltip.style.visibility = 'visible';
         }
@@ -132,8 +134,9 @@
       });
 
       grid.addEventListener('mouseout', (e) => {
-        const link = e.target.closest('.author-page-link');
-        if (link) {
+        const authorImg = e.target.closest('.author-image');
+        const related = e.relatedTarget ? e.relatedTarget.closest('.author-image') : null;
+        if (authorImg && authorImg !== related) {
           tooltip.style.opacity = '0';
           tooltip.style.visibility = 'hidden';
         }

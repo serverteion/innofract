@@ -1152,6 +1152,15 @@ body.home-page main { padding-top: 20px; }
   letter-spacing: 0.1em;
 }
 
+.author-image {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
 .blog-card-author-icon {
   width: 48px;
   height: 48px;

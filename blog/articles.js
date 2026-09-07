@@ -11,7 +11,7 @@ const ARTICLES = [
     slug: "homepage-launch",
     title: "レーベルのホームページを作りました。",
     author: "Supire",
-    date: "2026-08-08",
+    date: "2026-09-11",
     excerpt: "innofractの公式ホームページを発表しました。3月のレーベル立ち上げから半年、自分のコミュニティを持つという夢が叶いました。DTMの実験場として、ジャンルに縛られず面白いアイデアを発表できるプラットフォームを目指します。",
     file: "001-homepage-launch.html",
     length: 8,

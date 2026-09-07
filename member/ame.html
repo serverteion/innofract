@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kyosu-! - Music at innofract. Experimental electronic and digital soundscapes.">
-  <title>Kyosu-! | innofract</title>
+  <meta name="description" content="AME - Label / Music / Mastering at innofract. Experimental electronic, ambient, and digital soundscapes.">
+  <title>AME | innofract</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/png" href="../images/innofract_logo_001_black.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,20 +47,18 @@
       <div class="member-detail">
         <div class="member-detail-header">
           <div class="member-detail-avatar">
-            <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/kyosu_icon.png" alt="Kyosu-!" loading="lazy">
+            <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/ame_icon.png" alt="AME" loading="lazy">
           </div>
           <div class="member-detail-info">
-            <h1 id="member-name" class="member-detail-name">Kyosu-!</h1>
-            <p class="member-detail-role">Music</p>
+            <h1 id="member-name" class="member-detail-name">AME</h1>
+            <p class="member-detail-role">Label / Music / Mastering</p>
             <div class="member-detail-links">
-              <a href="https://x.com/kyosuu_maginary" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Kyosu-! on X (Twitter)">X</a>
-              <a href="https://soundcloud.com/kyosusan" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Kyosu-! on SoundCloud">SoundCloud</a>
             </div>
           </div>
         </div>
         <div class="member-products">
           <h2 class="member-products-title">Products</h2>
-          <div class="member-products-grid" id="kyosu-products"></div>
+          <div class="member-products-grid" id="ame-products"></div>
         </div>
       </div>
     </section>
@@ -71,14 +69,14 @@
   <script src="../script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('kyosu-products');
+      const container = document.getElementById('ame-products');
       if (!container) return;
       const allItems = [];
       if (typeof RELEASES !== 'undefined') {
-        RELEASES.forEach(release => { if (release.artist === 'Kyosu-!' || release.artist.includes('Kyosu') || release.artist === 'kyosu') { allItems.push({ type: 'release', date: release.date, title: release.title, artist: release.artist, catalog: release.catalog, image: release.artworkImage, url: release.downloadUrl }); } });
+        RELEASES.forEach(release => { if (release.artist === 'AME' || release.artist.includes('AME')) { allItems.push({ type: 'release', date: release.date, title: release.title, artist: release.artist, catalog: release.catalog, image: release.artworkImage, url: release.downloadUrl }); } });
       }
       if (typeof ARTICLES !== 'undefined') {
-        ARTICLES.forEach(article => { if (article.author === 'Kyosu-!' || article.author === 'kyosu') { allItems.push({ type: 'article', date: article.date, title: article.title, artist: article.author, catalog: null, image: `https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/blogpics/${article.file.replace('.html', '')}.png`, url: `../blog/${article.file}` }); });
+        ARTICLES.forEach(article => { if (article.author === 'AME') { allItems.push({ type: 'article', date: article.date, title: article.title, artist: article.author, catalog: null, image: `https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/blogpics/${article.file.replace('.html', '')}.png`, url: `../blog/${article.file}` }); });
       }
       allItems.sort((a, b) => a.date.localeCompare(b.date));
       allItems.forEach(item => {

@@ -28,6 +28,9 @@ const HEADER_HTML = `
     <a href="https://innofract.bandcamp.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp">
       <img src="images/bandcamp.png" alt="" width="24" height="24" loading="lazy">
     </a>
+    <a href="https://discord.gg/EHZY29saH8" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+      <img src="images/discord.png" alt="" width="24" height="24" loading="lazy">
+    </a>
   </div>
 </header>
 `;
