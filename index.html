@@ -9,170 +9,131 @@
   <link rel="icon" type="image/png" href="images/innofract_logo_001_black.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
   <style>
-    .author-page-link { display: inline-block; text-decoration: none; }
-    .author-page-link:hover .blog-card-author-icon { opacity: 0.8; transition: opacity 200ms ease; }
+    .home-logo-link { position: relative; display: inline-block; }
+    #particle-canvas { position: absolute; inset: -60px; pointer-events: none; z-index: 0; }
+    .home-logo-link img { position: relative; z-index: 1; display: block; }
+    body {
+      background: var(--bg) url('images/homebackground.gif') center center / cover no-repeat fixed;
+      background-blend-mode: multiply;
+    }
   </style>
 </head>
 <body class="home-page">
-  <div id="site-header"></div>
-
-  <main>
-    <section class="home-hero" aria-label="innofract logo">
-      <img src="images/innofract_logo_002_white.png" alt="innofract Logo" class="home-logo-img">
-    </section>
-
-    <div class="home-cover">
-      <div class="cover-column cover-releases">
-        <div class="cover-releases-grid">
-          <div class="cover-release">
-            <div id="latest-release-grid" class="releases-grid" role="list"></div>
-          </div>
-          <div class="cover-release">
-            <div id="recommended-release-grid" class="releases-grid" role="list"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cover-column cover-blog">
-        <article class="blog-card">
-          <a href="blog/001-homepage-launch.html" class="blog-link">
-            <div class="blog-card-art"><img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/blogpics/blog001.png" alt="" class="blog-card-preview"></div>
-            <div class="blog-card-body">
-              <p class="blog-card-meta">2026.08.08 · Announcement · 8 min read</p>
-              <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
-              <div class="blog-card-author-area">
-                <span class="blog-card-more" data-author="Supire">
-                  <a href="member/supire.html" class="author-page-link" aria-label="Supire's profile" data-author="Supire">
-                    <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
-                  </a>
-                </span>
-              </div>
-              <div class="blog-card-read-area">
-                <span class="blog-card-read">READ →</span>
-              </div>
-            </div>
-          </a>
-        </article>
-      </div>
-
-<div class="cover-column cover-blog cover-blog--coming-soon">
-        <article class="blog-card">
-          <a href="blog/001-homepage-launch.html" class="blog-link" style="pointer-events: none;">
-            <div class="blog-card-art"><img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/blogpics/blog001.png" alt="" class="blog-card-preview"></div>
-            <div class="blog-card-body">
-              <p class="blog-card-meta">2026.08.08 · Announcement · 8 min read</p>
-              <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
-              <div class="blog-card-author-area">
-                <span class="blog-card-more" data-author="Supire">
-                  <a href="member/supire.html" class="author-page-link" aria-label="Supire's profile" data-author="Supire">
-                    <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
-                  </a>
-                </span>
-              </div>
-              <div class="blog-card-read-area">
-                <span class="blog-card-read">READ →</span>
-              </div>
-            </div>
-          </a>
-        </article>
-        <div class="coming-soon-overlay">
-          <span class="coming-soon-text">COMING<br>SOON</span>
-        </div>
-      </div>
-    </div>
-
-    <section class="home-section" aria-labelledby="updates-title">
-      <h1 id="updates-title" class="releases-title">UPDATES</h1>
-      <ul class="updates-list">
-        <li><time datetime="2026-08-08">2026.08.08</time> — サイトを開設しました</li>
-      </ul>
-    </section>
+  <main class="home-main">
+    <a href="home.html" class="home-logo-link" aria-label="innofract - Enter">
+      <canvas id="particle-canvas" aria-hidden="true"></canvas>
+      <img src="images/innofract_logo_003_white.png" alt="innofract Logo" width="400">
+    </a>
+    <footer class="site-footer" role="contentinfo" style="margin-top: 24px;">
+      <p>innofract &copy; 2026</p>
+    </footer>
   </main>
-
-  <footer class="site-footer" role="contentinfo">
-    <p>innofract &copy; 2026</p>
-  </footer>
-
-  <script src="releases.js"></script>
-  <script src="script.js"></script>
+  
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Render latest release (most recent by date)
-      const latestGrid = document.getElementById('latest-release-grid');
-      if (latestGrid && typeof RELEASES !== 'undefined' && typeof createReleaseCard !== 'undefined') {
-        const latest = [...RELEASES].sort((a, b) => b.date.localeCompare(a.date))[0];
-        latestGrid.appendChild(createReleaseCard(latest, 'NEW!'));
+    (() => {
+      const link = document.querySelector('.home-logo-link');
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let animationId = null;
+      let isHovering = false;
+      let emissionRect = { x: 0, y: 0, w: 0, h: 0 };
+
+      function resizeCanvas() {
+        const rect = link.getBoundingClientRect();
+        canvas.width = rect.width + 120;
+        canvas.height = rect.height + 120;
+        // Emission rectangle: centered on logo text area
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        // Logo is 400x120 in SVG, scale to actual rendered size
+        const scale = rect.width / 400;
+        emissionRect.w = rect.width * 0.65; // Narrower: ~65% of logo width
+        emissionRect.h = rect.height * 0.82; // Slightly narrower than before
+        emissionRect.x = cx - emissionRect.w / 2;
+        emissionRect.y = cy - emissionRect.h / 2 - rect.height * 0.02;
       }
 
-      // Render recommended release (inno-0001)
-      const recommendedGrid = document.getElementById('recommended-release-grid');
-      if (recommendedGrid && typeof RELEASES !== 'undefined' && typeof createReleaseCard !== 'undefined') {
-        const recommended = RELEASES.find(r => r.id === 1);
-        if (recommended) {
-          recommendedGrid.appendChild(createReleaseCard(recommended, 'Recommended'));
+      class Particle {
+        constructor() {
+          // Spawn from random position on the front face of the emission rectangle
+          this.x = emissionRect.x + Math.random() * emissionRect.w;
+          this.y = emissionRect.y + Math.random() * emissionRect.h;
+          const angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.8;
+          const speed = Math.random() * 0.35 + 0.2;
+          this.vx = Math.cos(angle) * speed;
+          this.vy = Math.sin(angle) * speed;
+          this.life = 1;
+          this.decay = Math.random() * 0.003 + 0.002;
+          this.baseSize = Math.random() * 4 + 3;
+          this.size = this.baseSize;
+          this.hue = Math.random() > 0.6 ? 0 : 30;
+          this.sat = Math.random() > 0.6 ? 0 : 15;
+          this.light = 85 + Math.random() * 10;
+          this.twinklePhase = Math.random() * Math.PI * 2;
+          this.twinkleSpeed = Math.random() * 0.05 + 0.02;
+        }
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.vx *= 0.992;
+          this.vy *= 0.992;
+          this.life -= this.decay;
+          this.twinklePhase += this.twinkleSpeed;
+          const twinkle = (Math.sin(this.twinklePhase) * 0.5 + 0.5) * 0.4 + 0.6;
+          this.size = this.baseSize * twinkle * this.life;
+        }
+
+        draw() {
+          if (this.life <= 0 || this.size < 0.5) return;
+          const alpha = this.life * 0.5;
+          ctx.globalAlpha = alpha;
+          const l = Math.round(this.light * this.life + 10 * Math.sin(this.twinklePhase));
+          ctx.fillStyle = `hsl(${this.hue}, ${this.sat}%, ${l}%)`;
+          ctx.shadowColor = `hsl(${this.hue}, ${this.sat}%, ${Math.min(95, l + 15)}%)`;
+          ctx.shadowBlur = this.size * 1.5;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, Math.max(0.5, this.size), 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
         }
       }
 
-      // Blog card tooltip
-      const coverBlog = document.querySelector('.cover-blog:not(.cover-blog--coming-soon)');
-      if (coverBlog) {
-        const tooltip = document.createElement('div');
-        tooltip.className = 'blog-tooltip';
-        tooltip.style.cssText = `
-          position: fixed;
-          padding: 6px 12px;
-          background: var(--bg);
-          color: var(--fg);
-          font-size: 0.75rem;
-          font-family: var(--font-sans);
-          font-weight: 500;
-          white-space: nowrap;
-          border-radius: var(--radius);
-          border: 1px solid var(--border);
-          opacity: 0;
-          visibility: hidden;
-          pointer-events: none;
-          z-index: 100;
-          box-shadow: var(--shadow);
-          transition: opacity 200ms ease, visibility 200ms ease;
-        `;
-        document.body.appendChild(tooltip);
-
-        coverBlog.addEventListener('mouseover', (e) => {
-          const link = e.target.closest('.author-page-link');
-          if (link && link.dataset.author) {
-            tooltip.textContent = link.dataset.author;
-            tooltip.style.opacity = '1';
-            tooltip.style.visibility = 'visible';
-          }
-        });
-
-        coverBlog.addEventListener('mousemove', (e) => {
-          if (tooltip.style.opacity === '1') {
-            tooltip.style.left = e.clientX + 12 + 'px';
-            tooltip.style.top = e.clientY + 12 + 'px';
-          }
-        });
-
-        coverBlog.addEventListener('mouseout', (e) => {
-          const link = e.target.closest('.author-page-link');
-          if (link) {
-            tooltip.style.opacity = '0';
-            tooltip.style.visibility = 'hidden';
-          }
-        });
-
-        // Prevent author page link from triggering article navigation
-        coverBlog.addEventListener('click', (e) => {
-          const authorLink = e.target.closest('.author-page-link');
-          if (authorLink) {
-            e.stopPropagation();
-          }
-        });
+      function spawnParticle() {
+        particles.push(new Particle());
       }
-    });
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        if (isHovering && Math.random() < 0.35) {
+          spawnParticle();
+        }
+        
+        particles = particles.filter(p => p.life > 0);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        
+        animationId = requestAnimationFrame(animate);
+      }
+
+      link.addEventListener('mouseenter', () => {
+        isHovering = true;
+        resizeCanvas();
+        if (!animationId) animate();
+      });
+
+      link.addEventListener('mouseleave', () => {
+        isHovering = false;
+      });
+
+      window.addEventListener('resize', resizeCanvas);
+    })();
   </script>
 </body>
 </html>

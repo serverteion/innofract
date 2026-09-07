@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="innofract - Experimental netlabel exploring the boundaries of digital sound">
+  <title>innofract</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="images/innofract_logo_001_black.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    .author-page-link { display: inline-block; text-decoration: none; }
+    .author-page-link:hover .blog-card-author-icon { opacity: 0.8; transition: opacity 200ms ease; }
+  </style>
+</head>
+<body class="home-page">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="home-hero" aria-label="innofract logo">
+      <img src="images/innofract_logo_002_white.png" alt="innofract Logo" class="home-logo-img">
+    </section>
+
+    <div class="home-cover">
+      <div class="cover-column cover-releases">
+        <div class="cover-releases-grid">
+          <div class="cover-release">
+            <div id="latest-release-grid" class="releases-grid" role="list"></div>
+          </div>
+          <div class="cover-release">
+            <div id="recommended-release-grid" class="releases-grid" role="list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-column cover-blog">
+        <article class="blog-card">
+          <a href="blog/001-homepage-launch.html" class="blog-link">
+            <div class="blog-card-art"><img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/blogpics/blog001.png" alt="" class="blog-card-preview"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-meta">2026.08.08 · Announcement · 8 min read</p>
+              <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
+              <div class="blog-card-author-area">
+                <span class="blog-card-more" data-author="Supire">
+                  <a href="member/supire.html" class="author-page-link" aria-label="Supire's profile" data-author="Supire">
+                    <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+                  </a>
+                </span>
+              </div>
+              <div class="blog-card-read-area">
+                <span class="blog-card-read">READ →</span>
+              </div>
+            </div>
+          </a>
+        </article>
+      </div>
+
+<div class="cover-column cover-blog cover-blog--coming-soon">
+        <article class="blog-card">
+          <a href="blog/001-homepage-launch.html" class="blog-link" style="pointer-events: none;">
+            <div class="blog-card-art"><img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/blogpics/blog001.png" alt="" class="blog-card-preview"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-meta">2026.08.08 · Announcement · 8 min read</p>
+              <h2 class="blog-card-title">レーベルのホームページを作りました。</h2>
+              <div class="blog-card-author-area">
+                <span class="blog-card-more" data-author="Supire">
+                  <a href="member/supire.html" class="author-page-link" aria-label="Supire's profile" data-author="Supire">
+                    <img src="https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/supire_icon.png" alt="Supire" class="blog-card-author-icon" loading="lazy">
+                  </a>
+                </span>
+              </div>
+              <div class="blog-card-read-area">
+                <span class="blog-card-read">READ →</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <div class="coming-soon-overlay">
+          <span class="coming-soon-text">COMING<br>SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="home-section" aria-labelledby="updates-title">
+      <h1 id="updates-title" class="releases-title">UPDATES</h1>
+      <ul class="updates-list">
+        <li><time datetime="2026-08-08">2026.08.08</time> — サイトを開設しました</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>innofract &copy; 2026</p>
+  </footer>
+
+  <script src="releases.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render latest release (most recent by date)
+      const latestGrid = document.getElementById('latest-release-grid');
+      if (latestGrid && typeof RELEASES !== 'undefined' && typeof createReleaseCard !== 'undefined') {
+        const latest = [...RELEASES].sort((a, b) => b.date.localeCompare(a.date))[0];
+        latestGrid.appendChild(createReleaseCard(latest, 'NEW!'));
+      }
+
+      // Render recommended release (inno-0001)
+      const recommendedGrid = document.getElementById('recommended-release-grid');
+      if (recommendedGrid && typeof RELEASES !== 'undefined' && typeof createReleaseCard !== 'undefined') {
+        const recommended = RELEASES.find(r => r.id === 1);
+        if (recommended) {
+          recommendedGrid.appendChild(createReleaseCard(recommended, 'Recommended'));
+        }
+      }
+
+      // Blog card tooltip
+      const coverBlog = document.querySelector('.cover-blog:not(.cover-blog--coming-soon)');
+      if (coverBlog) {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'blog-tooltip';
+        tooltip.style.cssText = `
+          position: fixed;
+          padding: 6px 12px;
+          background: var(--bg);
+          color: var(--fg);
+          font-size: 0.75rem;
+          font-family: var(--font-sans);
+          font-weight: 500;
+          white-space: nowrap;
+          border-radius: var(--radius);
+          border: 1px solid var(--border);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          z-index: 100;
+          box-shadow: var(--shadow);
+          transition: opacity 200ms ease, visibility 200ms ease;
+        `;
+        document.body.appendChild(tooltip);
+
+        coverBlog.addEventListener('mouseover', (e) => {
+          const link = e.target.closest('.author-page-link');
+          if (link && link.dataset.author) {
+            tooltip.textContent = link.dataset.author;
+            tooltip.style.opacity = '1';
+            tooltip.style.visibility = 'visible';
+          }
+        });
+
+        coverBlog.addEventListener('mousemove', (e) => {
+          if (tooltip.style.opacity === '1') {
+            tooltip.style.left = e.clientX + 12 + 'px';
+            tooltip.style.top = e.clientY + 12 + 'px';
+          }
+        });
+
+        coverBlog.addEventListener('mouseout', (e) => {
+          const link = e.target.closest('.author-page-link');
+          if (link) {
+            tooltip.style.opacity = '0';
+            tooltip.style.visibility = 'hidden';
+          }
+        });
+
+        // Prevent author page link from triggering article navigation
+        coverBlog.addEventListener('click', (e) => {
+          const authorLink = e.target.closest('.author-page-link');
+          if (authorLink) {
+            e.stopPropagation();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

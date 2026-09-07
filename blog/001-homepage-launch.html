@@ -83,8 +83,8 @@
       if (ph) {
         const file = window.location.pathname.split('/').pop() || '';
         injectHeader(file);
-        const homeLink = ph.querySelector('a[href="index.html"]');
-        if (homeLink) homeLink.setAttribute('href', '../index.html');
+        const homeLink = ph.querySelector('a[href="home.html"]');
+        if (homeLink) homeLink.setAttribute('href', '../home.html');
         const musicLink = ph.querySelector('a[href="music.html"]');
         if (musicLink) musicLink.setAttribute('href', '../music.html');
         const memberLink = ph.querySelector('a[href="member.html"]');
@@ -94,7 +94,7 @@
         const aboutLink = ph.querySelector('a[href="about.html"]');
         if (aboutLink) aboutLink.setAttribute('href', '../about.html');
         const logoLink = ph.querySelector('.site-header-logo');
-        if (logoLink) logoLink.setAttribute('href', '../enter.html');
+        if (logoLink) logoLink.setAttribute('href', '../index.html');
         const img = ph.querySelector('.site-header-logo img');
         if (img) img.setAttribute('src', '../images/innofract_logo_001_white.png');
         const socialImgs = ph.querySelectorAll('.site-header-social img');

@@ -8,11 +8,11 @@
 // ============================================================
 const HEADER_HTML = `
 <header class="site-header" role="banner">
-  <a href="enter.html" class="site-header-logo" aria-label="innofract - Enter">
+  <a href="index.html" class="site-header-logo" aria-label="innofract - Enter">
     <img src="images/innofract_logo_001_white.png" alt="innofract">
   </a>
   <nav aria-label="Main navigation">
-    <a href="index.html">HOME</a>
+    <a href="home.html">HOME</a>
     <a href="music.html">MUSIC</a>
     <a href="blog.html">BLOG</a>
     <a href="member.html">MEMBER</a>
