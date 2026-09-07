@@ -293,8 +293,24 @@ img { display: block; max-width: 100%; height: auto; }
     height: 30px;
   }
 
-  main {
-    padding-top: 20px;
+  .about-section {
+    padding: 0 24px 80px;
+  }
+
+  .blog-section {
+    padding: 0 24px 80px;
+  }
+
+  .music-section {
+    padding: 0 24px 80px;
+  }
+
+  .releases-section {
+    padding: 0 24px 80px;
+  }
+
+  .members-section {
+    padding: 0 24px 80px;
   }
 }
 
@@ -1047,7 +1063,7 @@ body.home-page main { padding-top: 20px; }
   font-weight: 700;
   font-family: var(--font-heading);
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
   color: var(--fg);
 }
 
@@ -1343,6 +1359,18 @@ body.home-page main { padding-top: 20px; }
    Mobile responsive overrides
    ============================================================ */
 @media (max-width: 600px) {
+  main {
+    padding-top: 8px;
+    min-height: auto;
+    height: auto;
+  }
+
+  body.member-detail-page main {
+    padding-top: 8px;
+    min-height: auto;
+    height: auto;
+  }
+
   .cover-release .release-artwork {
     width: 100%;
   }
