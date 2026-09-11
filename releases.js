@@ -30,7 +30,7 @@ const RELEASES = [
     artworkImage: "https://raw.githubusercontent.com/serverteion/innopics/refs/heads/main/musicpis/inno0003.png",
     catalog: "inno-0003",
     downloadUrl: "https://innofract.bandcamp.com/album/reducted"
-  }
+  },
 ];
 
 // Sort by date ascending (oldest first)
